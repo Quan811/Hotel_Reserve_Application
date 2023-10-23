@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="4dp"
+    android:layout_margin="10dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/item_image"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/danang"
+            android:scaleType="centerInside"
+            />
+
+        <TextView
+            android:id="@+id/accommodation_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Hera Boutique Hotel"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="5dp"
+            >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_rating" />
+
+            <TextView
+                android:id="@+id/accommodation_rating"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="8.7"
+                android:layout_marginLeft="5dp"
+                />
+
+            <TextView
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="/ 10" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="5dp"
+            >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_location"
+                />
+
+            <TextView
+                android:id="@+id/accommodation_location"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="Da Lat, Viet Nam"
+                android:layout_marginLeft="5dp"/>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/accommodation_description"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="Surrounded by natural greenery, Lahana Resort offers eco-friendly accommodations in Duong Dong town in Phu Quoc. The resort features an outdoor infinity pool and on-site restaurant Ca Go."
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+
+            />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

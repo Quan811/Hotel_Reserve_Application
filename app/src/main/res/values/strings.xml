@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">HotelBooking</string>
+
+    //Onboarding_titles
+    <string name="onboarding_title_1">Find Destination</string>
+    <string name="onboarding_title_2">Online Booking Ticket</string>
+    <string name="onboarding_title_3">Enjoy Your Travel</string>
+
+    //Descriptions
+    <string name="description_1">Explore new things through our app. Find travel places with just 1 touch</string>
+    <string name="description_2">Booking ticket now is fast, easily payment</string>
+    <string name="description_3">Now you are ready, let get started !!!</string>
+
+
+</resources>

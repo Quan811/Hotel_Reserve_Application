@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activity.DetailAccommodationActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/button"
+        >
+
+        <ImageView
+            android:id="@+id/button_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_arrow_back"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/accommodation_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/poppins_medium"
+            android:text="DaLat Pro Hotel"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="5dp"
+            />
+        <ImageView
+            android:id="@+id/ic_choice"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_3cham"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="20dp"
+            />
+        <ImageView
+            android:id="@+id/ic_bookmark"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_bookmark"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="65dp"
+            />
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager_acc_detail"
+                android:layout_width="match_parent"
+                android:layout_height="240dp" />
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/circle_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                app:ci_drawable="@drawable/custom_selected_indicator"
+                app:ci_drawable_unselected="@drawable/custom_unselected_indicator"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:id="@+id/accommodation_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resort"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_rating" />
+
+                <TextView
+                    android:id="@+id/accommodation_rating"
+                    android:layout_width="25dp"
+                    android:layout_height="30dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:text="8.7"
+                    android:layout_marginLeft="5dp"
+                    />
+
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="36dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:text="/ 10" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_location"
+                    />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:id="@+id/accommodation_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center"
+                        android:text="Da Lat"
+                        android:layout_marginLeft="5dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center"
+                        android:text=",Viet Nam"
+                        android:layout_marginLeft="5dp"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                />
+            <com.borjabravo.readmoretextview.ReadMoreTextView
+                android:id="@+id/accommodation_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Santa Garden Resort features an outdoor swimming pool, fitness center, a garden and bar in Phú Quốc. With free WiFi, this 4-star resort offers a 24-hour front desk and a tour desk. The property is non-smoking throughout and is located 3.3 miles from Sung Hung Pagoda.
+
+\nThe resort will provide guests with air-conditioned rooms with a desk, an electric tea pot, a minibar, a safety deposit box, a flat-screen TV and a private bathroom with a bidet. All guest rooms include a closet.
+\nÀ la carte and Asian breakfast options are available daily at Santa Garden Resort.
+The accommodation has a playground.
+Vinpearl Land Phu Quoc is 17 miles from Santa Garden Resort, while Corona Casino is 17 miles away. The nearest airport is Phu Quoc International Airport, 0.6 miles from the resort."
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/poppins_medium"
+                app:trimExpandedText="Show more"
+                app:trimCollapsedText="Show less"
+                app:trimMode="trimModeLine"
+                app:trimLines="5"
+                app:colorClickableText="#039BE5"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:cardCornerRadius="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/map"
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_reserve"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                android:text="Reserve"
+                android:textAllCaps="false"
+                app:cornerRadius="10dp"
+                android:layout_margin="20dp"
+                />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>
