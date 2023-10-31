@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Villa &amp; Apartment"
-        android:fontFamily="@font/poppins_regular"
         android:textColor="@color/black"
         android:gravity="center_horizontal"
         />

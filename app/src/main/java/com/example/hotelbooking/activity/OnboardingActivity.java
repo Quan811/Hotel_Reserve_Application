@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+
 import me.relex.circleindicator.CircleIndicator;
 
 import com.example.hotelbooking.adapter.OnboardingAdapter;
@@ -35,7 +35,7 @@ public class OnboardingActivity extends AppCompatActivity {
             finish();
         } else {
             // Màn hình Onboarding sẽ hiển thị
-            setContentView(R.layout.onboarding_screen);
+            setContentView(R.layout.activity_onboarding_screen);
 
             getStartedButton = findViewById(R.id.get_started_button);
             slideViewPager = findViewById(R.id.slide_viewpager);

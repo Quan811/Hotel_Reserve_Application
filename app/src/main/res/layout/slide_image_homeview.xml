@@ -8,8 +8,8 @@
     <ImageView
         android:id="@+id/imgPhoto"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:src="@drawable/vungtau"
+        android:layout_height="220dp"
+        android:src="@drawable/caobang"
         android:scaleType="centerCrop"
         />
 </LinearLayout>

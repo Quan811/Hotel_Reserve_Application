@@ -12,7 +12,13 @@
         android:theme="@style/AppTheme"
         tools:targetApi="29">
         <activity
-            android:name=".activity.ReverseRoomActivity"
+            android:name=".activity.AccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MyReserveActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ReserveRoomActivity"
             android:exported="false" />
         <activity
             android:name=".activity.DetailAccommodationActivity"

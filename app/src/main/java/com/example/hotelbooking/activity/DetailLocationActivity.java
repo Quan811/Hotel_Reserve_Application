@@ -1,7 +1,5 @@
 package com.example.hotelbooking.activity;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,15 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hotelbooking.R;
-import com.example.hotelbooking.adapter.DetailLocationViewPagerAdapter;
+import com.example.hotelbooking.adapter.DetailLocationAdapter;
 import com.example.hotelbooking.model.Accommodation;
-import com.example.hotelbooking.viewmodel.AccommodationViewModel;
+import com.example.hotelbooking.data.AccommodationViewModel;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.util.ArrayList;
@@ -27,12 +24,12 @@ public class DetailLocationActivity extends AppCompatActivity {
     TextView tvLocation;
     ImageView buttonBack;
     RecyclerView rcvLocationDetail;
-    DetailLocationViewPagerAdapter detailLocationViewPagerAdapter;
+    DetailLocationAdapter detailLocationAdapter;
     AccommodationViewModel accommodationViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_location);
+        setContentView(R.layout.activity_detail_location);
         initView();
 
         tvLocation.setText(getQueryText());
@@ -82,10 +79,10 @@ public class DetailLocationActivity extends AppCompatActivity {
     }
 
     private void setDataRecyclerView(List<Accommodation> list){
-        detailLocationViewPagerAdapter = new DetailLocationViewPagerAdapter(getApplicationContext(), list);
+        detailLocationAdapter = new DetailLocationAdapter(getApplicationContext(), list);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
         rcvLocationDetail.setLayoutManager(linearLayoutManager);
-        rcvLocationDetail.setAdapter(detailLocationViewPagerAdapter);
+        rcvLocationDetail.setAdapter(detailLocationAdapter);
     }
 
 

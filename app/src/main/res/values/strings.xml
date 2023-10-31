@@ -10,6 +10,23 @@
     <string name="description_1">Explore new things through our app. Find travel places with just 1 touch</string>
     <string name="description_2">Booking ticket now is fast, easily payment</string>
     <string name="description_3">Now you are ready, let get started !!!</string>
+    <string-array name="array_duration_stay">
+        <item>1 night</item>
+        <item>2 nights</item>
+        <item>3 nights</item>
+        <item>4 nights</item>
+        <item>5 nights</item>
+        <item>6 nights</item>
+        <item>7 nights</item>
 
+    </string-array>
+
+    <string-array name="array_payment_method">
+        <item>Master Card</item>
+        <item>Visa</item>
+        <item>Internet Banking</item>
+        <item>Momo Wallet</item>
+
+    </string-array>
 
 </resources>

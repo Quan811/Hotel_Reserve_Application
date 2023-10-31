@@ -1,45 +1,57 @@
 package com.example.hotelbooking.model;
 
-import java.util.List;
 
-public class Order {
+import java.io.Serializable;
 
-    Client client;
-    List<Accommodation> accommodationOrdered;
+public class Order implements Serializable {
+
+    Room room;
+    Accommodation accommodation;
+    String clientName;
+    String clientPhoneNumber;
     String paymentMethod;
     String timeOrder;
+    String orderStatus;
     String totalPayment;
+    String numberOfRoom;
 
-    public Order(Client client, List<Accommodation> accommodationOrdered, String paymentMethod, String timeOrder, String totalPayment) {
-        this.client = client;
-        this.accommodationOrdered = accommodationOrdered;
+    public Order(Room room, Accommodation accommodation, String clientName, String clientPhoneNumber, String paymentMethod, String timeOrder, String orderStatus, String totalPayment, String numberOfRoom) {
+        this.room = room;
+        this.accommodation = accommodation;
+        this.clientName = clientName;
+        this.clientPhoneNumber = clientPhoneNumber;
         this.paymentMethod = paymentMethod;
         this.timeOrder = timeOrder;
+        this.orderStatus = orderStatus;
         this.totalPayment = totalPayment;
+        this.numberOfRoom = numberOfRoom;
     }
 
-    public Client getClient() {
-        return client;
+    public Order() {
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public String getNumberOfRoom() {
+        return numberOfRoom;
     }
 
-    public String getTotalPayment() {
-        return totalPayment;
+    public void setNumberOfRoom(String numberOfRoom) {
+        this.numberOfRoom = numberOfRoom;
     }
 
-    public void setTotalPayment(String totalPayment) {
-        this.totalPayment = totalPayment;
+    public Room getRoom() {
+        return room;
     }
 
-    public List<Accommodation> getHotelOrdered() {
-        return accommodationOrdered;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
-    public void setHotelOrdered(List<Accommodation> accommodationOrdered) {
-        this.accommodationOrdered = accommodationOrdered;
+    public Accommodation getAccommodation() {
+        return accommodation;
+    }
+
+    public void setAccommodation(Accommodation accommodation) {
+        this.accommodation = accommodation;
     }
 
     public String getPaymentMethod() {
@@ -56,5 +68,37 @@ public class Order {
 
     public void setTimeOrder(String timeOrder) {
         this.timeOrder = timeOrder;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public String getTotalPayment() {
+        return totalPayment;
+    }
+
+    public void setTotalPayment(String totalPayment) {
+        this.totalPayment = totalPayment;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public String getClientPhoneNumber() {
+        return clientPhoneNumber;
+    }
+
+    public void setClientPhoneNumber(String clientPhoneNumber) {
+        this.clientPhoneNumber = clientPhoneNumber;
     }
 }

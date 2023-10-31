@@ -27,7 +27,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/poppins_regular"
             android:text="Hera Boutique Hotel"
             android:textSize="25dp"
             android:textColor="@color/black"
@@ -76,7 +75,7 @@
                 />
 
             <TextView
-                android:id="@+id/accommodation_location"
+                android:id="@+id/location"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:gravity="center"

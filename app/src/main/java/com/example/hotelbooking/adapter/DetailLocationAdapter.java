@@ -15,21 +15,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.hotelbooking.R;
 import com.example.hotelbooking.activity.DetailAccommodationActivity;
+import com.example.hotelbooking.activity.ReserveRoomActivity;
 import com.example.hotelbooking.model.Accommodation;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class DetailLocationViewPagerAdapter extends RecyclerView.Adapter<DetailLocationViewPagerAdapter.LocationDetailViewHolder> {
+public class DetailLocationAdapter extends RecyclerView.Adapter<DetailLocationAdapter.LocationDetailViewHolder> {
     Context context;
     List<Accommodation> accommodationList;
 
-    public DetailLocationViewPagerAdapter(Context context, List<Accommodation> accommodationList) {
+    public DetailLocationAdapter(Context context, List<Accommodation> accommodationList) {
         this.context = context;
         this.accommodationList = accommodationList;
     }
 
-    public DetailLocationViewPagerAdapter(Context context) {
+    public DetailLocationAdapter(Context context) {
         this.context = context;
     }
 
@@ -42,7 +42,7 @@ public class DetailLocationViewPagerAdapter extends RecyclerView.Adapter<DetailL
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LocationDetailViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull LocationDetailViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Accommodation accommodation = accommodationList.get(position);
         if(accommodation == null){
             return;
@@ -60,7 +60,7 @@ public class DetailLocationViewPagerAdapter extends RecyclerView.Adapter<DetailL
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), DetailAccommodationActivity.class);
-                intent.putExtra("object", (Serializable) accommodationList.get(position));
+                intent.putExtra("accommodation_from_location_to_detail_accommodation",  accommodation);
                 holder.itemView.getContext().startActivity(intent);
             }
         });
@@ -82,7 +82,7 @@ public class DetailLocationViewPagerAdapter extends RecyclerView.Adapter<DetailL
             super(view);
             itemImage = view.findViewById(R.id.item_image);
             accommodationName = view.findViewById(R.id.accommodation_name);
-            accommodationLocation = view.findViewById(R.id.accommodation_location);
+            accommodationLocation = view.findViewById(R.id.location);
             accommodationDes = view.findViewById(R.id.accommodation_description);
             accommodationRating = view.findViewById(R.id.accommodation_rating);
 

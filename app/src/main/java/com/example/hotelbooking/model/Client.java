@@ -1,9 +1,12 @@
 package com.example.hotelbooking.model;
 
-public class Client {
+import java.io.Serializable;
+
+public class Client implements Serializable {
     String fullName;
     Account account;
     String phoneNumber;
+    Order order;
 
     public Client(String fullName, Account account, String phoneNumber) {
         this.fullName = fullName;

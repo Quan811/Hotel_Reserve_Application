@@ -31,7 +31,6 @@
             android:layout_height="22dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/poppins_bold"
             android:text="Hà Nội"
             android:textColor="@color/black"
             android:textSize="17dp" />

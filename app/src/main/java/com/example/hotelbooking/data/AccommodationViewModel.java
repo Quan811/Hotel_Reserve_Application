@@ -1,4 +1,4 @@
-package com.example.hotelbooking.viewmodel;
+package com.example.hotelbooking.data;
 
 import androidx.lifecycle.ViewModel;
 import com.example.hotelbooking.model.Accommodation;
