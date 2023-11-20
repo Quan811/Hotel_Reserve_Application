@@ -16,35 +16,41 @@ import com.example.hotelbooking.model.Accommodation;
 import com.example.hotelbooking.model.Order;
 import com.example.hotelbooking.model.Room;
 
+import java.util.List;
+
 public class MyReserveAdapter extends RecyclerView.Adapter<MyReserveAdapter.MyReserveViewHolder>{
 
     Context context;
-    Order order;
+    List<Order> orderList;
 
     public MyReserveAdapter() {
     }
 
-    public MyReserveAdapter(Context context, Order order) {
+    public MyReserveAdapter(Context context, List<Order> orderList) {
         this.context = context;
-        this.order = order;
+        this.orderList = orderList;
     }
 
     @NonNull
     @Override
     public MyReserveViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_myreserve, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_my_reserve, parent, false);
         return new MyReserveViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyReserveViewHolder holder, int position) {
+        Order order = orderList.get(position);
+        if(order == null){
+            return;
+        }
         Accommodation accommodation = order.getAccommodation();
         Room room = order.getRoom();
 
         holder.accommodationName.setText(accommodation.getAccommodationName());
-        holder.location.setText(accommodation.getLocation());
+        holder.location.setText(accommodation.getLocation().trim());
 
-        String total = order.getTotalPayment();
+        String total = order.getTotal();
         StringBuilder stringBuilder = new StringBuilder(total).reverse();
         for(int i=3; i<stringBuilder.length(); i+=4){
             stringBuilder.insert(i, ".");
@@ -66,7 +72,10 @@ public class MyReserveAdapter extends RecyclerView.Adapter<MyReserveAdapter.MyRe
 
     @Override
     public int getItemCount() {
-        return 1;
+        if(orderList != null){
+            return orderList.size();
+        }
+        return 0;
     }
 
     public class MyReserveViewHolder extends RecyclerView.ViewHolder {

@@ -12,10 +12,19 @@
         android:theme="@style/AppTheme"
         tools:targetApi="29">
         <activity
-            android:name=".activity.AccountActivity"
+            android:name=".activity.AdminUpdateAccommodationActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.MyReserveActivity"
+            android:name=".activity.AdminOrdersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AdminAccommodationsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AdminHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AccountActivity"
             android:exported="false" />
         <activity
             android:name=".activity.ReserveRoomActivity"

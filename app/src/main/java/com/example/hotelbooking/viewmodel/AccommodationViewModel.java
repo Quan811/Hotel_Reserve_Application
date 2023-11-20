@@ -1,18 +1,17 @@
-package com.example.hotelbooking.data;
+package com.example.hotelbooking.viewmodel;
 
 import com.example.hotelbooking.model.Accommodation;
 
-public class AccommodationHolder {
-    private static AccommodationHolder instance;
+public class AccommodationViewModel {
+    private static AccommodationViewModel instance;
     private Accommodation accommodation;
 
-    private AccommodationHolder() {
-        // Khởi tạo lớp Singleton
+    private AccommodationViewModel() {
     }
 
-    public static AccommodationHolder getInstance() {
+    public static AccommodationViewModel getInstance() {
         if (instance == null) {
-            instance = new AccommodationHolder();
+            instance = new AccommodationViewModel();
         }
         return instance;
     }

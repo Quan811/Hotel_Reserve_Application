@@ -3,6 +3,9 @@ package com.example.hotelbooking.model;
 public class Account {
     String email, password;
 
+    public Account() {
+    }
+
     public Account(String email, String password) {
         this.email = email;
         this.password = password;

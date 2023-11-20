@@ -15,29 +15,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.hotelbooking.R;
 import com.example.hotelbooking.activity.DetailAccommodationActivity;
-import com.example.hotelbooking.activity.ReserveRoomActivity;
 import com.example.hotelbooking.model.Accommodation;
 
 import java.util.List;
 
-public class DetailLocationAdapter extends RecyclerView.Adapter<DetailLocationAdapter.LocationDetailViewHolder> {
+public class ClientAccommodationsAdapter extends RecyclerView.Adapter<ClientAccommodationsAdapter.LocationDetailViewHolder> {
     Context context;
     List<Accommodation> accommodationList;
 
-    public DetailLocationAdapter(Context context, List<Accommodation> accommodationList) {
+    public ClientAccommodationsAdapter(Context context, List<Accommodation> accommodationList) {
         this.context = context;
         this.accommodationList = accommodationList;
     }
 
-    public DetailLocationAdapter(Context context) {
-        this.context = context;
-    }
 
 
     @NonNull
     @Override
     public LocationDetailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_location_detail, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_accommodation, parent, false);
         return new LocationDetailViewHolder(view);
     }
 

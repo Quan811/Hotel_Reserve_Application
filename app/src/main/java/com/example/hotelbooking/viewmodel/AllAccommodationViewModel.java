@@ -1,5 +1,7 @@
-package com.example.hotelbooking.data;
+package com.example.hotelbooking.viewmodel;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.example.hotelbooking.model.Accommodation;
 import com.google.firebase.database.DataSnapshot;
@@ -10,10 +12,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccommodationViewModel extends ViewModel {
+public class AllAccommodationViewModel extends ViewModel {
     private final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("accommodations");
 
-    public void getAllAccommodations(final OnDataLoadedListener onDataLoadedListener) {
+    public LiveData<List<Accommodation>> getAccommodationsLiveData() {
+        final MutableLiveData<List<Accommodation>> accommodationsLiveData = new MutableLiveData<>();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -24,19 +27,14 @@ public class AccommodationViewModel extends ViewModel {
                         accommodations.add(accommodation);
                     }
                 }
-                onDataLoadedListener.onDataLoaded(accommodations);
+                accommodationsLiveData.setValue(accommodations);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                onDataLoadedListener.onError(databaseError.toException());
+                // Xử lý lỗi nếu cần
             }
         });
-    }
-
-    public interface OnDataLoadedListener {
-        void onDataLoaded(List<Accommodation> accommodations);
-
-        void onError(Exception e);
+        return accommodationsLiveData;
     }
 }

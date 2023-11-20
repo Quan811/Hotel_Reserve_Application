@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hotelbooking.R;
 import com.example.hotelbooking.model.Category;
-import com.example.hotelbooking.activity.IListener;
 
 import java.util.List;
 

@@ -4,9 +4,17 @@
         android:icon="@drawable/ic_home"
         android:title="Home" />
     <item
-        android:id="@+id/tab_myreserve"
-        android:icon="@drawable/ic_booking"
-        android:title="My Reserve" />
+        android:id="@+id/s2"
+        android:icon="@drawable/ic_credit_card"
+        android:title="Card"
+        />
+    <item
+        android:id="@+id/placeholder"
+        android:title="" />
+    <item
+        android:id="@+id/s4"
+        android:icon="@drawable/ic_setting"
+        android:title="Setting" />
     <item
         android:id="@+id/tab_account"
         android:icon="@drawable/ic_account"

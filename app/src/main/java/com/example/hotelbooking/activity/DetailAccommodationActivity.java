@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.example.hotelbooking.R;
 import com.example.hotelbooking.adapter.DetailAccommodationAdapter;
 import com.example.hotelbooking.adapter.RoomAdapter;
-import com.example.hotelbooking.data.AccommodationHolder;
+import com.example.hotelbooking.viewmodel.AccommodationViewModel;
 import com.example.hotelbooking.model.Accommodation;
 import com.example.hotelbooking.model.Room;
 
@@ -38,7 +38,7 @@ public class DetailAccommodationActivity extends AppCompatActivity {
     Runnable autoScrollRunnable;
     final Handler autoScrollHandler = new Handler();
     RoomAdapter roomAdapter;
-    AccommodationHolder holder;
+    AccommodationViewModel accommodationViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +68,7 @@ public class DetailAccommodationActivity extends AppCompatActivity {
 
     private void sendAccommodation(){
         Accommodation accommodation = getAccommodation();
-        holder.getInstance().setDataToPass(accommodation);
+        accommodationViewModel.getInstance().setDataToPass(accommodation);
         if(accommodation == null){
             Log.d(TAG, "sendAccommodation: du lieu gui di trong");
         }else {

@@ -12,7 +12,7 @@ public class Order implements Serializable {
     String paymentMethod;
     String timeOrder;
     String orderStatus;
-    String totalPayment;
+    String total;
     String numberOfRoom;
 
     public Order(Room room, Accommodation accommodation, String clientName, String clientPhoneNumber, String paymentMethod, String timeOrder, String orderStatus, String totalPayment, String numberOfRoom) {
@@ -23,7 +23,7 @@ public class Order implements Serializable {
         this.paymentMethod = paymentMethod;
         this.timeOrder = timeOrder;
         this.orderStatus = orderStatus;
-        this.totalPayment = totalPayment;
+        this.total = totalPayment;
         this.numberOfRoom = numberOfRoom;
     }
 
@@ -78,12 +78,12 @@ public class Order implements Serializable {
         this.orderStatus = orderStatus;
     }
 
-    public String getTotalPayment() {
-        return totalPayment;
+    public String getTotal() {
+        return total;
     }
 
-    public void setTotalPayment(String totalPayment) {
-        this.totalPayment = totalPayment;
+    public void setTotal(String total) {
+        this.total = total;
     }
 
     public String getClientName() {

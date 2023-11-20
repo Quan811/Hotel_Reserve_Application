@@ -44,7 +44,7 @@
             android:id="@+id/edt_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="quan@gmail.com"
+            android:text="admin@gmail.com"
             />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -69,8 +69,8 @@
             android:id="@+id/edt_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="admin1234"
             android:inputType="textPassword"
-            android:text="8112001"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,7 +109,7 @@
         android:textAllCaps="false"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        app:cornerRadius="20dp"
+        app:cornerRadius="10dp"
         android:backgroundTint="@color/button"
         />
     <TextView

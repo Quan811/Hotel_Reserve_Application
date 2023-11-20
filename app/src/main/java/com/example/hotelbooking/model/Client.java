@@ -3,15 +3,19 @@ package com.example.hotelbooking.model;
 import java.io.Serializable;
 
 public class Client implements Serializable {
-    String fullName;
     Account account;
+    String fullName;
     String phoneNumber;
     Order order;
 
-    public Client(String fullName, Account account, String phoneNumber) {
-        this.fullName = fullName;
+    public Client() {
+    }
+
+    public Client(Account account, String fullName, String phoneNumber, Order order) {
         this.account = account;
+        this.fullName = fullName;
         this.phoneNumber = phoneNumber;
+        this.order = order;
     }
 
     public String getFullName() {

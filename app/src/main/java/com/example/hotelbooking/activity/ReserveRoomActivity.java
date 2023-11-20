@@ -2,6 +2,7 @@ package com.example.hotelbooking.activity;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -21,11 +22,19 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.hotelbooking.R;
-import com.example.hotelbooking.data.AccommodationHolder;
+import com.example.hotelbooking.viewmodel.AccommodationViewModel;
 import com.example.hotelbooking.model.Accommodation;
 import com.example.hotelbooking.model.Order;
 import com.example.hotelbooking.model.Room;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.io.Serializable;
@@ -33,9 +42,11 @@ import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class ReserveRoomActivity extends AppCompatActivity {
     TextView roomType, numberAvailable, price,roomDes,numberOfRoom,total, datePicker,accommodationName;
@@ -103,7 +114,7 @@ public class ReserveRoomActivity extends AppCompatActivity {
         order.setClientName(clientName);
         order.setClientPhoneNumber(clientPhoneNumber);
         order.setTimeOrder(timeOrder);
-        order.setTotalPayment(total);
+        order.setTotal(total);
         order.setRoom(room);
         order.setAccommodation(accommodation);
         order.setPaymentMethod(paymentMethod);
@@ -353,8 +364,35 @@ public class ReserveRoomActivity extends AppCompatActivity {
                                     false)
                             .show();
                 }else{
-                    Intent intent = new Intent(getApplicationContext(), MyReserveActivity.class);
-                    intent.putExtra("order_from_reserve", getOrder());
+                    Order order = getOrder();
+                    String orderID = UUID.randomUUID().toString();
+
+                    //add order to orders
+                    DatabaseReference orderRef = FirebaseDatabase.getInstance().getReference("orders");
+                    orderRef.child(orderID).setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Log.d(TAG, "onComplete: Add order success");
+                        }
+                    });
+                    //add order to client
+                    String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    DatabaseReference clientRef = FirebaseDatabase.getInstance()
+                            .getReference("clients")
+                            .child(userID)
+                            .child("orders");
+                    Map<String, Object> orderMap = new HashMap<>();
+                    orderMap.put(orderID, order);
+                    clientRef.updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Log.d(TAG, "cap nhat order cho client: thanh cong");
+                            }
+                        }
+                    });
+
+                    Intent intent = new Intent(getApplicationContext(), ClientHomeActivity.class);
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(),
                                     "Reverse Successful !!!",
@@ -365,7 +403,7 @@ public class ReserveRoomActivity extends AppCompatActivity {
         });
     }
     private Accommodation getAccommodation(){
-        Accommodation accommodation = AccommodationHolder.getInstance().getDataToPass();
+        Accommodation accommodation = AccommodationViewModel.getInstance().getDataToPass();
         if(accommodation == null){
             Log.d(TAG, "getAccommodation: du lieu nhan ve trong");
         }else {

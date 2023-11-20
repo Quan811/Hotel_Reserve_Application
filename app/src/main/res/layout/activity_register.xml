@@ -12,7 +12,7 @@
         android:layout_height="100dp"
         android:src="@drawable/logo"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         />
 
     <TextView
@@ -185,7 +185,7 @@
         android:textAllCaps="false"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        app:cornerRadius="20dp"
+        app:cornerRadius="10dp"
         android:backgroundTint="@color/button"
         />
 

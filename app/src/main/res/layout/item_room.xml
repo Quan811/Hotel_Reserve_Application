@@ -29,6 +29,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             android:text="Premier Suite Double Ocean view"
+            android:textStyle="bold"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/room_img"
             app:layout_constraintTop_toTopOf="parent" />
@@ -99,6 +100,7 @@
             android:layout_height="wrap_content"
             android:text="Room size: 45m2\nThis twin/double room has a balcony, cable TV and seating area."
             android:textSize="14dp"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/room_img"

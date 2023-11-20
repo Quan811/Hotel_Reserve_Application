@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/relative_layout"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:background="@color/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,31 +21,29 @@
             android:id="@+id/button_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="10dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
             android:src="@drawable/ic_arrow_back" />
 
         <TextView
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="5dp"
-            android:text="Fill Reserve Infomation"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="-2dp"
+            android:layout_marginBottom="7dp"
+            android:text="Fill Your Information"
+            android:textStyle="bold"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="20dp" />
+            android:textSize="20dp"/>
 
         <ImageView
             android:id="@+id/ic_choice"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp"
             android:background="@drawable/ic_3cham" />
     </RelativeLayout>
     <ScrollView
@@ -64,8 +62,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Accommodation Name"
-                android:layout_marginTop="20dp"
-                android:textSize="25dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -105,6 +104,7 @@
                         android:layout_marginTop="16dp"
                         android:text="Premier Suite Double Ocean view"
                         android:textColor="@color/black"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/room_img"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -178,6 +178,7 @@
                         android:layout_margin="10dp"
                         android:text="Room size: 45m2\nThis twin/double room has a balcony, cable TV and seating area."
                         android:textSize="14dp"
+                        android:textColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

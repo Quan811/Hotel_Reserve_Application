@@ -1,5 +1,7 @@
 package com.example.hotelbooking.activity;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -27,6 +30,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 
@@ -35,10 +39,10 @@ public class LoginActivity extends AppCompatActivity {
     TextView registerButton;
     MaterialButton loginButton;
     ImageButton loginWithGoogleButton, loginWithFacebookButton;
-
     FirebaseAuth mAuth;
     GoogleSignInClient gsc;
     GoogleSignInOptions gso;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,22 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         initView();
+
+
+        //register
+        onRegisterButtonClick();
+
+        //login with email and password
+        onLoginButtonClick();
+
+        //login with google
+        onLoginGoogleButtonClick();
+
+
+
+    }
+
+    private void onLoginGoogleButtonClick(){
         mAuth = FirebaseAuth.getInstance();
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -60,8 +80,9 @@ public class LoginActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1234);
             }
         });
+    }
 
-        //register
+    private void onRegisterButtonClick(){
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,8 +90,8 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        //login with email and password
+    }
+    private void onLoginButtonClick(){
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,37 +119,39 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 mAuth.signInWithEmailAndPassword(email, password)
-                                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            FancyToast.makeText(getApplicationContext(),
-                                            "Login SuccesFull !",
-                                            FancyToast.LENGTH_LONG,
-                                            FancyToast.SUCCESS,
-                                            false)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    if(email.equals("admin@gmail.com")  && password.equals("admin1234")){
+                                        Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else {
+                                        Intent intent = new Intent(LoginActivity.this, ClientHomeActivity.class);
+                                        startActivity(intent);
+                                    }
+
+                                    FancyToast.makeText(getApplicationContext(),
+                                                    "Login Successful !",
+                                                    FancyToast.LENGTH_LONG,
+                                                    FancyToast.SUCCESS,
+                                                    false)
                                             .show();
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(LoginActivity.this, ClientHomeActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }else{
-                            FancyToast.makeText(getApplicationContext(),
-                                            "Authentication failed !",
-                                            FancyToast.LENGTH_LONG,
-                                            FancyToast.ERROR,
-                                            false)
+
+                                }else{
+                                    FancyToast.makeText(getApplicationContext(),
+                                                    "Authentication failed !",
+                                                    FancyToast.LENGTH_LONG,
+                                                    FancyToast.ERROR,
+                                                    false)
                                             .show();
-                        }
-                    }
-                });
+                                }
+                            }
+                        });
             }
         });
-
-
-
     }
-
     public void initView(){
         edtEmail = findViewById(R.id.edt_email);
         edtPassword = findViewById(R.id.edt_password);

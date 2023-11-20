@@ -1,22 +1,30 @@
 package com.example.hotelbooking.activity;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.hotelbooking.R;
+import com.example.hotelbooking.model.Account;
+import com.example.hotelbooking.model.Client;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -37,6 +45,13 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        onLoginButtonClick();
+        onRegisterButtonClick();
+
+
+    }
+
+    private void onLoginButtonClick(){
         returnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,62 +60,69 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void onRegisterButtonClick(){
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email, fullName, phoneNumber, password, retypePassword;
-                email = String.valueOf(edtEmail.getText()).trim();
-                fullName = String.valueOf(edtFullName.getText()).trim();
-                phoneNumber = String.valueOf(edtPhoneNumber.getText()).trim();
-                password = String.valueOf(edtPassword.getText()).trim();
-                retypePassword = String.valueOf(edtConfirmPassword.getText()).trim();
 
+                String email = edtEmail.getText().toString().trim();
+                String fullName = edtFullName.getText().toString().trim();
+                String phoneNumber = edtPhoneNumber.getText().toString().trim();
+                String password = edtPassword.getText().toString().trim();
+                String confirmPassword = edtConfirmPassword.getText().toString().trim();
+
+                Account account = new Account(email, password);
+                Client client = new Client(account, fullName, phoneNumber, null);
+
+                //check Empty
                 if(TextUtils.isEmpty(fullName)){
                     FancyToast.makeText(getApplicationContext(),
-                            "Fullname is not be empty !",
-                            FancyToast.LENGTH_LONG,
-                            FancyToast.ERROR,
-                            false)
+                                    "Fullname is not be empty !",
+                                    FancyToast.LENGTH_LONG,
+                                    FancyToast.ERROR,
+                                    false)
                             .show();
                     return;
                 }
 
                 if(TextUtils.isEmpty(phoneNumber)){
                     FancyToast.makeText(getApplicationContext(),
-                            "Phone number is not be empty !",
-                            FancyToast.LENGTH_LONG,
-                            FancyToast.ERROR,
-                            false)
+                                    "Phone number is not be empty !",
+                                    FancyToast.LENGTH_LONG,
+                                    FancyToast.ERROR,
+                                    false)
                             .show();
                     return;
                 }
 
                 if(TextUtils.isEmpty(email)){
                     FancyToast.makeText(getApplicationContext(),
-                            "Email is not be empty !",
-                            FancyToast.LENGTH_LONG,
-                            FancyToast.ERROR,
-                            false)
+                                    "Email is not be empty !",
+                                    FancyToast.LENGTH_LONG,
+                                    FancyToast.ERROR,
+                                    false)
                             .show();
                     return;
                 }
 
                 if(TextUtils.isEmpty(password)){
                     FancyToast.makeText(getApplicationContext(),
-                            "Password is not be empty !",
-                            FancyToast.LENGTH_LONG,
-                            FancyToast.ERROR,
-                            false)
+                                    "Password is not be empty !",
+                                    FancyToast.LENGTH_LONG,
+                                    FancyToast.ERROR,
+                                    false)
                             .show();
                     return;
                 }
 
-                if(!retypePassword.equals(password)){
+                if(!confirmPassword.equals(password)){
                     FancyToast.makeText(getApplicationContext(),
-                            "Confirm password is incorrect !",
-                            FancyToast.LENGTH_LONG,
-                            FancyToast.ERROR,
-                            false)
+                                    "Confirm password is incorrect !",
+                                    FancyToast.LENGTH_LONG,
+                                    FancyToast.ERROR,
+                                    false)
                             .show();
                     return;
                 }
@@ -115,40 +137,56 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
+                //Create User On Firebase Auth
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    FancyToast.makeText(getApplicationContext(),
-                                            "Account created !",
-                                            FancyToast.LENGTH_LONG,
-                                            FancyToast.SUCCESS,
-                                            false)
-                                            .show();
+                                    Log.d(TAG, "createNewClient: Successfull! ");
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    String userID = user.getUid();
 
-                                    registerButton.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                            startActivity(intent);
-                                            finish();
-                                        }
-                                    });
+                                    DatabaseReference databaseReference = FirebaseDatabase.getInstance()
+                                            .getReference("clients").child(userID);
+                                    databaseReference.child("orders").setValue(null);
+                                    databaseReference.setValue(client)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if(task.isSuccessful()){
+                                                        FancyToast.makeText(getApplicationContext(),
+                                                                        "Register Successful!",
+                                                                        FancyToast.LENGTH_LONG,
+                                                                        FancyToast.SUCCESS,
+                                                                        false)
+                                                                .show();
+                                                        Log.d(TAG, "onComplete: "+userID);
+                                                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                                        startActivity(intent);
+                                                        finish();
+                                                    }
+                                                    else{
+                                                        FancyToast.makeText(getApplicationContext(),
+                                                                        "Something went wrong!!!",
+                                                                        FancyToast.LENGTH_LONG,
+                                                                        FancyToast.ERROR,
+                                                                        false)
+                                                                .show();
+                                                    }
+                                                }
+                                            });
+
+
                                 } else {
-                                    FancyToast.makeText(getApplicationContext(),
-                                            "Create failed !",
-                                            FancyToast.LENGTH_LONG,
-                                            FancyToast.ERROR,
-                                            false)
-                                            .show();
+                                    Log.d(TAG, "createNewClient: Failed! ");
                                 }
                             }
                         });
+
+
             }
         });
-
-
     }
 
     public void initView(){

@@ -10,6 +10,7 @@
     <string name="description_1">Explore new things through our app. Find travel places with just 1 touch</string>
     <string name="description_2">Booking ticket now is fast, easily payment</string>
     <string name="description_3">Now you are ready, let get started !!!</string>
+    <string name="default_web_client_id">926256713340-eektgheqf85pudvap4925u90k9fobeoe.apps.googleusercontent.com</string>
     <string-array name="array_duration_stay">
         <item>1 night</item>
         <item>2 nights</item>
@@ -26,7 +27,6 @@
         <item>Visa</item>
         <item>Internet Banking</item>
         <item>Momo Wallet</item>
-
     </string-array>
 
 </resources>

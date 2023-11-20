@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/parent"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:background="@color/button"
         >
 
@@ -18,35 +18,30 @@
             android:id="@+id/button_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/ic_arrow_back"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            />
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_arrow_back" />
 
         <TextView
             android:id="@+id/accommodation_name"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:text="DaLat Pro Hotel"
-            android:textSize="20dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="-2dp"
+            android:layout_marginBottom="7dp"
+            android:text="Accommodation Name"
+            android:textStyle="bold"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:layout_marginBottom="5dp"
-            />
+            android:textSize="20dp" />
         <ImageView
             android:id="@+id/ic_choice"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/ic_3cham"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
             android:layout_marginEnd="20dp"
-            />
+            android:background="@drawable/ic_3cham" />
 
     </RelativeLayout>
     <ScrollView
@@ -60,7 +55,7 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewpager_acc_detail"
                 android:layout_width="match_parent"
-                android:layout_height="240dp" />
+                android:layout_height="240dp"/>
             <me.relex.circleindicator.CircleIndicator
                 android:id="@+id/circle_indicator"
                 android:layout_width="wrap_content"
@@ -69,79 +64,92 @@
                 app:ci_drawable_unselected="@drawable/custom_unselected_indicator"
                 android:layout_gravity="center"
                 />
-            <TextView
-                android:id="@+id/accommodation_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Resort"
-                android:layout_marginLeft="15dp"
-                android:textSize="20dp"
-                android:textColor="@color/black"
-                />
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/stroke_layout"
+                android:layout_marginStart="15dp"
+                android:padding="5dp"
+                android:layout_marginBottom="5dp"
+                >
+                <TextView
+                    android:id="@+id/accommodation_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Resort"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginLeft="15dp"
                 >
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_rating" />
+                    android:id="@+id/img_view"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_rating"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/accommodation_rating"
-                    android:layout_width="25dp"
+                    android:layout_width="20dp"
                     android:layout_height="30dp"
                     android:gravity="center"
                     android:text="8.7"
-                    android:layout_marginLeft="5dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_view"
+                    app:layout_constraintStart_toEndOf="@+id/img_view"
+                    app:layout_constraintTop_toTopOf="@+id/img_view"
                     />
 
                 <TextView
-                    android:layout_width="25dp"
-                    android:layout_height="36dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:gravity="center"
-                    android:text="/ 10" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:orientation="horizontal"
+                    android:text="/ 10"
+                    app:layout_constraintBottom_toBottomOf="@+id/accommodation_rating"
+                    app:layout_constraintStart_toEndOf="@+id/accommodation_rating"
+                    app:layout_constraintTop_toTopOf="@+id/accommodation_rating" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 >
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:id="@+id/imageView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="center"
+                    android:padding="5dp"
                     android:src="@drawable/ic_location"
-                    />
-                <LinearLayout
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/location"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:id="@+id/location"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:gravity="center"
-                        android:text="Da Lat"
-                        android:layout_marginLeft="5dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:gravity="center"
-                        android:text=",Viet Nam"
-                        android:layout_marginLeft="5dp"/>
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="Da Lat"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toTopOf="@+id/imageView" />
 
-                </LinearLayout>
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1.5dp"
@@ -154,8 +162,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Description"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="15dp"
                 android:textSize="20dp"
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 />
             <com.borjabravo.readmoretextview.ReadMoreTextView
@@ -168,8 +178,9 @@
 \nÀ la carte and Asian breakfast options are available daily at Santa Garden Resort.
 The accommodation has a playground.
 Vinpearl Land Phu Quoc is 17 miles from Santa Garden Resort, while Corona Casino is 17 miles away. The nearest airport is Phu Quoc International Airport, 0.6 miles from the resort."
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 app:trimExpandedText="Show more"
                 app:trimCollapsedText="Show less"
@@ -191,12 +202,14 @@ Vinpearl Land Phu Quoc is 17 miles from Santa Garden Resort, while Corona Casino
                 android:text="Location"
                 android:layout_marginLeft="15dp"
                 android:textSize="20dp"
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 />
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 app:cardCornerRadius="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 >
@@ -212,8 +225,9 @@ Vinpearl Land Phu Quoc is 17 miles from Santa Garden Resort, while Corona Casino
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Room Available"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="15dp"
                 android:textSize="20dp"
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 android:layout_marginTop="15dp"
                 />
@@ -222,6 +236,7 @@ Vinpearl Land Phu Quoc is 17 miles from Santa Garden Resort, while Corona Casino
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="#85D5FB"
+                android:layout_marginTop="10dp"
                 >
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcv_room"

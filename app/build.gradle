@@ -35,7 +35,7 @@ android {
 dependencies {
 
     //Firebase
-    implementation 'com.google.firebase:firebase-auth:21.0.3'
+    implementation 'com.google.firebase:firebase-auth:22.1.2'
     implementation 'com.google.firebase:firebase-auth-ktx:22.1.2'
     implementation 'com.google.firebase:firebase-database:20.3.0'
     constraints {
@@ -73,6 +73,7 @@ dependencies {
     //Custom Toast
     implementation 'io.github.shashank02051997:FancyToast:2.0.2'
 
+    //readmore
     implementation 'com.borjabravo:readmoretextview:2.1.0'
 
 

@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/parent"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:background="@color/button"
         >
 
@@ -18,32 +18,32 @@
             android:id="@+id/button_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
             android:src="@drawable/ic_arrow_back"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
             />
 
         <TextView
             android:id="@+id/tv_location"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:text="Phu Quoc"
-            android:textSize="20dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="-2dp"
+            android:layout_marginBottom="7dp"
+            android:text="Accommodation Name"
+            android:textStyle="bold"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:layout_marginBottom="5dp"
+            android:textSize="20dp"
             />
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:id="@+id/ic_choice"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/ic_3cham" />
+            android:background="@drawable/ic_3cham"  />
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
