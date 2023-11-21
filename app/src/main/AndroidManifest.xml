@@ -12,6 +12,9 @@
         android:theme="@style/AppTheme"
         tools:targetApi="29">
         <activity
+            android:name=".activity.AdminAddAccommodationActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.AdminUpdateAccommodationActivity"
             android:exported="false" />
         <activity

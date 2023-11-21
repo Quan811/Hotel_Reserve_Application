@@ -12,6 +12,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.TextView;
 
 import com.example.hotelbooking.R;
@@ -104,6 +106,9 @@ public class AdminHomeActivity extends AppCompatActivity {
         if(list != null){
             AdminAccommodationsAdapter adminAccommodationsAdapter = new AdminAccommodationsAdapter(getApplicationContext(), list);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
+            LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this, R.anim.layout_animation_left_to_right);
+            rcvAccommodations.setLayoutAnimation(animation);
+            adminAccommodationsAdapter.notifyDataSetChanged();
             rcvAccommodations.setLayoutManager(linearLayoutManager);
             rcvAccommodations.setAdapter(adminAccommodationsAdapter);
         }
@@ -116,6 +121,9 @@ public class AdminHomeActivity extends AppCompatActivity {
             MyReserveAdapter orderAdapter = new MyReserveAdapter(getApplicationContext(), list);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
             rcvOrders.setLayoutManager(linearLayoutManager);
+            LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this,R.anim.layout_animation_right_to_left);
+            rcvOrders.setLayoutAnimation(animation);
+            orderAdapter.notifyDataSetChanged();
             rcvOrders.setAdapter(orderAdapter);
         }
         else{

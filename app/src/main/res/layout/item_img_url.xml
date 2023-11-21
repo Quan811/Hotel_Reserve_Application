@@ -2,12 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="50dp">
+    android:layout_height="wrap_content">
 
     <EditText
         android:id="@+id/edt_URL"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="50dp"
@@ -29,5 +29,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/edt_URL"
         app:layout_constraintTop_toTopOf="@+id/edt_URL" />
+    <LinearLayout
+        android:id="@+id/layout_image_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/edt_URL"
+        android:visibility="gone"
+        >
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_save_image"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:backgroundTint="@color/button"
+            android:text="Save"
+            android:layout_marginStart="100dp"
+            android:textAllCaps="false"
+            android:textSize="8dp"
+            app:cornerRadius="10dp" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_cancle_image"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            android:backgroundTint="@color/button"
+            android:text="Cancle"
+            android:layout_marginStart="20dp"
+            android:textAllCaps="false"
+            android:textSize="8dp"
+            app:cornerRadius="10dp" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

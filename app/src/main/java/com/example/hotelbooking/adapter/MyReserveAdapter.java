@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -68,6 +70,8 @@ public class MyReserveAdapter extends RecyclerView.Adapter<MyReserveAdapter.MyRe
         Glide.with(holder.roomImg.getContext())
                 .load(room.getRoomImg())
                 .into(holder.roomImg);
+
+
     }
 
     @Override

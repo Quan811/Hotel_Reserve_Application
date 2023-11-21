@@ -23,6 +23,10 @@ public class ImageURLAdapter extends RecyclerView.Adapter<ImageURLAdapter.ImageU
         this.listURL = listURL;
         this.context = context;
     }
+    public List<String> getListURL(){
+        return listURL;
+    }
+
 
     @NonNull
     @Override
