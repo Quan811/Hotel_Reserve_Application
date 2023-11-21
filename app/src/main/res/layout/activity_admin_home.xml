@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="@drawable/top_background"
         >
@@ -20,8 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:text="Welcome,"
+            android:layout_marginTop="10dp"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,13 +30,15 @@
             android:id="@+id/client_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:text="Admin"
             android:textColor="@color/white"
             android:textSize="15dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tv"
-            app:layout_constraintStart_toEndOf="@+id/tv"
-            app:layout_constraintTop_toTopOf="@+id/tv" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv"
+            app:layout_constraintStart_toStartOf="@+id/tv"
+            app:layout_constraintTop_toBottomOf="@id/tv" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -98,7 +100,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv1"
                 android:background="#F8F3F3"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv1" />
 
@@ -133,6 +138,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv2"
                 android:background="#F8F3F3"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv2" />

@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hotelbooking.R;
 import com.example.hotelbooking.activity.ClientHomeActivity;
-import com.example.hotelbooking.adapter.MyReserveAdapter;
+import com.example.hotelbooking.adapter.ClientOrderAdapter;
 import com.example.hotelbooking.model.Order;
 import com.example.hotelbooking.viewmodel.ClientOrdersViewModel;
 
@@ -30,7 +30,7 @@ import java.util.List;
 public class MyReserveFragment extends Fragment {
     RecyclerView rcvMyReserve;
     ImageView buttonBack;
-    MyReserveAdapter adapter;
+    ClientOrderAdapter adapter;
     ClientOrdersViewModel clientOrdersViewModel;
     LinearLayout noReservation;
     @Nullable
@@ -67,7 +67,7 @@ public class MyReserveFragment extends Fragment {
                     noReservation.setVisibility(View.GONE);
                     rcvMyReserve.setVisibility(View.VISIBLE);
                     Log.d(TAG, "List Order: " + listOrder.size());
-                    adapter = new MyReserveAdapter(getContext(), listOrder);
+                    adapter = new ClientOrderAdapter(getContext(), listOrder);
                     LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                     rcvMyReserve.setLayoutManager(manager);
                     rcvMyReserve.setAdapter(adapter);

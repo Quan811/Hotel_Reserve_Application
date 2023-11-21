@@ -1,7 +1,12 @@
 package com.example.hotelbooking.adapter;
 
+import static android.content.ContentValues.TAG;
+
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +21,11 @@ import com.bumptech.glide.Glide;
 import com.example.hotelbooking.R;
 import com.example.hotelbooking.activity.AdminUpdateAccommodationActivity;
 import com.example.hotelbooking.model.Accommodation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -24,6 +33,8 @@ public class AdminAccommodationsAdapter extends RecyclerView.Adapter<AdminAccomm
 
     Context context;
     List<Accommodation> accommodationList;
+
+    DatabaseReference databaseReference;
 
     public AdminAccommodationsAdapter(Context context, List<Accommodation> accommodationList) {
         this.context = context;
@@ -63,11 +74,46 @@ public class AdminAccommodationsAdapter extends RecyclerView.Adapter<AdminAccomm
         holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(holder.itemImage.getContext());
+
+                builder.setTitle("WARNING!!!");
+                builder.setMessage("Can not undo after delete, continue?");
+
+                // Nút Yes
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Thực hiện xóa ở đây
+                        databaseReference = FirebaseDatabase.getInstance().getReference("accommodations");
+                        databaseReference.child(accommodation.getAccommodationName())
+                                .removeValue()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            Log.d(TAG, "Delete Accommodation:  Success ");
+                                        }else {
+                                            Log.d(TAG, "Delete Accommodation:  Failed!!! ");
+                                        }
+                                    }
+                                });
+                    }
+                });
+
+                // Nút No
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Đóng dialog, không thực hiện xóa
+                        dialog.dismiss();
+                    }
+                });
+
+                // Hiển thị dialog
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
             }
         });
 
-        holder.itemView.startAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.left_to_right));
     }
 
     @Override
@@ -91,4 +137,6 @@ public class AdminAccommodationsAdapter extends RecyclerView.Adapter<AdminAccomm
             buttonDelete = view.findViewById(R.id.button_delete);
         }
     }
+
+
 }

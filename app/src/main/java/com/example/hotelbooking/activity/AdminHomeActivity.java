@@ -18,8 +18,7 @@ import android.widget.TextView;
 
 import com.example.hotelbooking.R;
 import com.example.hotelbooking.adapter.AdminAccommodationsAdapter;
-import com.example.hotelbooking.adapter.ClientAccommodationsAdapter;
-import com.example.hotelbooking.adapter.MyReserveAdapter;
+import com.example.hotelbooking.adapter.AdminOrderAdapter;
 import com.example.hotelbooking.model.Accommodation;
 import com.example.hotelbooking.model.Order;
 import com.example.hotelbooking.viewmodel.AllAccommodationViewModel;
@@ -87,17 +86,19 @@ public class AdminHomeActivity extends AppCompatActivity {
         allOrdersViewModel.getOrdersLiveData().observe(this, new Observer<List<Order>>() {
             @Override
             public void onChanged(List<Order> orders) {
-                List<Order> listOrderReturn = new ArrayList<>();
-                for(int i = 0 ; i<3; i++){
-                    listOrderReturn.add(orders.get(i));
-                }
-                if(listOrderReturn != null){
-                    Log.d(TAG, "setRcvOrders: list order not null ");
-                    Log.d(TAG, "list order: "+listOrderReturn.size());
-                    setDataRcvOrders(listOrderReturn);
-                }
-                else{
-                    Log.d(TAG, "setRcvOrders: list order is null ");
+                if(orders.size() >=3){
+                    List<Order> listOrderReturn = new ArrayList<>();
+                    for(int i = 0 ; i<3; i++){
+                        listOrderReturn.add(orders.get(i));
+                    }
+                    if(listOrderReturn != null){
+                        Log.d(TAG, "setRcvOrders: list order not null ");
+                        Log.d(TAG, "list order: "+listOrderReturn.size());
+                        setDataRcvOrders(listOrderReturn);
+                    }
+                    else{
+                        Log.d(TAG, "setRcvOrders: list order is null ");
+                    }
                 }
             }
         });
@@ -118,13 +119,13 @@ public class AdminHomeActivity extends AppCompatActivity {
     }
     private void setDataRcvOrders(List<Order> list){
         if(list != null){
-            MyReserveAdapter orderAdapter = new MyReserveAdapter(getApplicationContext(), list);
+            AdminOrderAdapter adminOrderAdapter = new AdminOrderAdapter(getApplicationContext(), list);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
             rcvOrders.setLayoutManager(linearLayoutManager);
             LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this,R.anim.layout_animation_right_to_left);
             rcvOrders.setLayoutAnimation(animation);
-            orderAdapter.notifyDataSetChanged();
-            rcvOrders.setAdapter(orderAdapter);
+            adminOrderAdapter.notifyDataSetChanged();
+            rcvOrders.setAdapter(adminOrderAdapter);
         }
         else{
             Log.d(TAG, "setDataRcvOrders: ko co du lieu");

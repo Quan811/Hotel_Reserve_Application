@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="15dp"
     app:cardElevation="4dp"
-    android:layout_margin="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="5dp"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,26 +32,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginStart="10dp"
             android:text="Accommodation Name"
             android:textColor="@color/black"
-            android:textSize="18dp"
+            android:textSize="15dp"
             android:textStyle="bold"
-            android:layout_marginStart="10dp"
             app:layout_constraintStart_toEndOf="@id/item_image"
             app:layout_constraintTop_toTopOf="@id/item_image" />
 
         <LinearLayout
             android:id="@+id/linear"
             android:layout_width="wrap_content"
-            android:layout_height="25dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="5dp"
             app:layout_constraintStart_toStartOf="@+id/accommodation_name"
-            app:layout_constraintTop_toBottomOf="@+id/accommodation_name"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/accommodation_name">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_rating" />
 
@@ -56,64 +60,68 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="8.7"
                 android:layout_marginLeft="5dp"
-                />
+                android:text="8.7"
+                android:textSize="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="2dp"
-                android:text="/ 10" />
+                android:text="/ 10"
+                android:textSize="12dp" />
         </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="wrap_content"
-            android:layout_height="25dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/linear"
             app:layout_constraintStart_toStartOf="@id/linear"
-            >
+            app:layout_constraintTop_toBottomOf="@id/linear">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_location"
-                />
+                android:src="@drawable/ic_location" />
+
             <TextView
                 android:id="@+id/location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="Da Lat, Viet Nam"
-                />
+                android:textSize="12dp" />
 
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_update"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
             android:layout_marginTop="10dp"
             android:backgroundTint="#F86C40"
             android:text="Update"
-            android:layout_marginStart="60dp"
             android:textAllCaps="false"
+            android:textSize="10dp"
             app:cornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_image" />
+            app:layout_constraintBottom_toBottomOf="@+id/item_image"
+            app:layout_constraintEnd_toStartOf="@+id/button_delete"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout3"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="60dp"
             android:backgroundTint="#F86C40"
             android:text="Delete"
             android:textAllCaps="false"
+            android:textSize="10dp"
             app:cornerRadius="10dp"
-            android:layout_marginEnd="60dp"
             app:layout_constraintBottom_toBottomOf="@+id/button_update"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/button_update" />

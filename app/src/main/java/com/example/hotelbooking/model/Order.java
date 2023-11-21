@@ -4,7 +4,7 @@ package com.example.hotelbooking.model;
 import java.io.Serializable;
 
 public class Order implements Serializable {
-
+    String orderID;
     Room room;
     Accommodation accommodation;
     String clientName;
@@ -15,7 +15,8 @@ public class Order implements Serializable {
     String total;
     String numberOfRoom;
 
-    public Order(Room room, Accommodation accommodation, String clientName, String clientPhoneNumber, String paymentMethod, String timeOrder, String orderStatus, String totalPayment, String numberOfRoom) {
+    public Order(String orderID, Room room, Accommodation accommodation, String clientName, String clientPhoneNumber, String paymentMethod, String timeOrder, String orderStatus, String totalPayment, String numberOfRoom) {
+        this.orderID = orderID;
         this.room = room;
         this.accommodation = accommodation;
         this.clientName = clientName;
@@ -28,6 +29,14 @@ public class Order implements Serializable {
     }
 
     public Order() {
+    }
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
     }
 
     public String getNumberOfRoom() {

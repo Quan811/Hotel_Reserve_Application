@@ -5,6 +5,8 @@
     <color name="button">#039BE5</color>
     <color name="red">#C62222</color>
     <color name="colorTheme">#039BE5</color>
+    <color name="green">#04B344</color>
+    <color name="yellow">#E4B234</color>
     <color name="transparent">#00FFFFFF</color>
 
 </resources>

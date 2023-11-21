@@ -1,11 +1,12 @@
 package com.example.hotelbooking.adapter;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,18 +18,23 @@ import com.example.hotelbooking.R;
 import com.example.hotelbooking.model.Accommodation;
 import com.example.hotelbooking.model.Order;
 import com.example.hotelbooking.model.Room;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class MyReserveAdapter extends RecyclerView.Adapter<MyReserveAdapter.MyReserveViewHolder>{
+public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.MyReserveViewHolder>{
 
     Context context;
     List<Order> orderList;
+    DatabaseReference databaseReference;
 
-    public MyReserveAdapter() {
-    }
-
-    public MyReserveAdapter(Context context, List<Order> orderList) {
+    public AdminOrderAdapter(Context context, List<Order> orderList) {
         this.context = context;
         this.orderList = orderList;
     }
@@ -43,6 +49,7 @@ public class MyReserveAdapter extends RecyclerView.Adapter<MyReserveAdapter.MyRe
     @Override
     public void onBindViewHolder(@NonNull MyReserveViewHolder holder, int position) {
         Order order = orderList.get(position);
+
         if(order == null){
             return;
         }
@@ -65,12 +72,34 @@ public class MyReserveAdapter extends RecyclerView.Adapter<MyReserveAdapter.MyRe
         holder.phoneNumber.setText(order.getClientPhoneNumber());
         holder.timeOrder.setText(order.getTimeOrder());
         holder.paymentMethod.setText(order.getPaymentMethod());
-        holder.orderStatus.setText(order.getOrderStatus());
+
+        String status = order.getOrderStatus();
+        Log.d(TAG, "status: "+status);
+        if(status.equals("Approved")){
+            holder.orderStatus.setTextColor(holder.itemView.getResources().getColor(R.color.green));
+            holder.orderStatus.setText(status);
+        }
+        else{
+            holder.buttonApproved.setVisibility(View.VISIBLE);
+            holder.orderStatus.setTextColor(holder.itemView.getResources().getColor(R.color.yellow));
+            holder.orderStatus.setText(status);
+        }
 
         Glide.with(holder.roomImg.getContext())
                 .load(room.getRoomImg())
                 .into(holder.roomImg);
 
+        holder.buttonApproved.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.orderStatus.setTextColor(holder.itemView.getResources().getColor(R.color.green));
+                holder.orderStatus.setText("Approved");
+                order.setOrderStatus("Approved");
+                updateOrderOnFirebase(order);
+                notifyDataSetChanged();
+                holder.buttonApproved.setVisibility(View.GONE);
+            }
+        });
 
     }
 
@@ -86,6 +115,7 @@ public class MyReserveAdapter extends RecyclerView.Adapter<MyReserveAdapter.MyRe
         TextView accommodationName, location, numberOfRoom, roomType, total, clientName,
                 phoneNumber, timeOrder, paymentMethod, orderStatus;
         ImageView roomImg;
+        MaterialButton buttonApproved;
         public MyReserveViewHolder(@NonNull View view) {
             super(view);
 
@@ -100,7 +130,29 @@ public class MyReserveAdapter extends RecyclerView.Adapter<MyReserveAdapter.MyRe
             clientName = view.findViewById(R.id.client_name);
             orderStatus = view.findViewById(R.id.order_status);
             roomImg = view.findViewById(R.id.room_img);
+            buttonApproved = view.findViewById(R.id.button_approved);
 
         }
+    }
+
+    private void updateOrderOnFirebase(Order order) {
+        // Lấy DatabaseReference cho đối tượng Order cần cập nhật
+        databaseReference = FirebaseDatabase.getInstance().getReference("orders").child(order.getOrderID());
+
+        // Cập nhật thuộc tính orderStatus trên Firebase Realtime Database
+        Map<String, Object> updateData = new HashMap<>();
+        updateData.put("orderStatus", order.getOrderStatus());
+
+        databaseReference.updateChildren(updateData)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Update Order on Firebase: Success");
+                        } else {
+                            Log.e(TAG, "Update Order on Firebase: Failed", task.getException());
+                        }
+                    }
+                });
     }
 }

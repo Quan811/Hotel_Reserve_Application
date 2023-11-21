@@ -111,19 +111,21 @@ public class AdminAddAccommodationActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
                                     Log.d(TAG, "Add New Accommodation: Success ");
-                                    finish();
                                     FancyToast.makeText(getApplicationContext(),
                                             "Add Succesful",
                                             FancyToast.LENGTH_SHORT,
                                             FancyToast.SUCCESS,
-                                            false);
+                                            false)
+                                            .show();
+                                    finish();
                                 }else {
                                     Log.d(TAG, "Add New Accommodation: Failed ");
                                     FancyToast.makeText(getApplicationContext(),
                                             "Add Failed!!!",
                                             FancyToast.LENGTH_SHORT,
                                             FancyToast.ERROR,
-                                            false);
+                                            false)
+                                            .show();
                                     finish();
                                 }
                             }

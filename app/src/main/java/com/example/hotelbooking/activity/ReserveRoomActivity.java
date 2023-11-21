@@ -94,6 +94,7 @@ public class ReserveRoomActivity extends AppCompatActivity {
     public Order getOrder(){
 
         //lay thong tin can thiet
+        String orderID = UUID.randomUUID().toString();
         String clientName = String.valueOf(edtName.getText()).trim();
         String clientPhoneNumber = String.valueOf(edtPhoneNumber.getText()).trim();
         String total = getTotal();
@@ -111,6 +112,7 @@ public class ReserveRoomActivity extends AppCompatActivity {
         }
         //set du lieu cho Order
         Order order = new Order();
+        order.setOrderID(orderID);
         order.setClientName(clientName);
         order.setClientPhoneNumber(clientPhoneNumber);
         order.setTimeOrder(timeOrder);
@@ -365,7 +367,7 @@ public class ReserveRoomActivity extends AppCompatActivity {
                             .show();
                 }else{
                     Order order = getOrder();
-                    String orderID = UUID.randomUUID().toString();
+                    String orderID = order.getOrderID();
 
                     //add order to orders
                     DatabaseReference orderRef = FirebaseDatabase.getInstance().getReference("orders");
@@ -397,7 +399,7 @@ public class ReserveRoomActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                                     "Reverse Successful !!!",
                                     Toast.LENGTH_SHORT)
-                                    .show();
+                            .show();
                 }
             }
         });

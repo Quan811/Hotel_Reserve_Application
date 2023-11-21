@@ -31,11 +31,10 @@
             android:layout_marginTop="-2dp"
             android:layout_marginBottom="7dp"
             android:text="Accommodation Name"
-            android:textStyle="bold"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="20dp"
-            />
+            android:textSize="16dp"
+            android:textStyle="bold" />
         <ImageView
             android:id="@+id/ic_choice"
             android:layout_width="20dp"
