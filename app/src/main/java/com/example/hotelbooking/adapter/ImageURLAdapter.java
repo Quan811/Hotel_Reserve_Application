@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hotelbooking.R;
+import com.example.hotelbooking.model.Room;
 
 import java.util.List;
 
@@ -27,7 +28,6 @@ public class ImageURLAdapter extends RecyclerView.Adapter<ImageURLAdapter.ImageU
         return listURL;
     }
 
-
     @NonNull
     @Override
     public ImageURLViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,12 +38,15 @@ public class ImageURLAdapter extends RecyclerView.Adapter<ImageURLAdapter.ImageU
     @Override
     public void onBindViewHolder(@NonNull ImageURLViewHolder holder, int position) {
         String url = listURL.get(position);
-        holder.edtURL.setText(url);
+        if(url != null){
+            holder.edtURL.setText(url);
 
+        }
         holder.buttonDelete.setOnClickListener(v -> {
             listURL.remove(position);
             notifyDataSetChanged();
         });
+
     }
 
     @Override

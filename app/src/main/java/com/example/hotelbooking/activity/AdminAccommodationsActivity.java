@@ -45,6 +45,7 @@ public class AdminAccommodationsActivity extends AppCompatActivity {
         setRcvAccommodations();
         searchViewOnClick();
         buttonBackOnClick();
+        buttonAddOnClick();
     }
 
     private void setRcvAccommodations(){
@@ -71,7 +72,15 @@ public class AdminAccommodationsActivity extends AppCompatActivity {
         }
     }
 
-
+    private void buttonAddOnClick(){
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AdminAddAccommodationActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
     private void initView() {
         rcvAccommodations = findViewById(R.id.rcv_accommodations);
         searchView = findViewById(R.id.searchview);

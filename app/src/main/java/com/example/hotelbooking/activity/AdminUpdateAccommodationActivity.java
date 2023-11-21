@@ -123,6 +123,7 @@ public class AdminUpdateAccommodationActivity extends AppCompatActivity {
                 listURL.add(edtAddImage.getText().toString().trim());
                 ImageURLAdapter urlAdapter = new ImageURLAdapter(getApplicationContext(), listURL);
                 rcvURL.setAdapter(urlAdapter);
+                edtAddImage.setText("");
             }
         });
 
