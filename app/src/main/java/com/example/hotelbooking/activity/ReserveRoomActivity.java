@@ -4,6 +4,8 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -22,10 +24,12 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.hotelbooking.R;
+import com.example.hotelbooking.model.Client;
 import com.example.hotelbooking.viewmodel.AccommodationViewModel;
 import com.example.hotelbooking.model.Accommodation;
 import com.example.hotelbooking.model.Order;
 import com.example.hotelbooking.model.Room;
+import com.example.hotelbooking.viewmodel.ClientInfoViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -81,6 +85,7 @@ public class ReserveRoomActivity extends AppCompatActivity {
         setSpinnerDurationStay();
         setSpinnerPaymentMethod();
 
+        setClientData();
         setCurrentTime();
 
         onClickDatePicker();
@@ -414,6 +419,17 @@ public class ReserveRoomActivity extends AppCompatActivity {
             Log.d(TAG, "getAccommodation: co du lieu nhan ve");
         }
         return  accommodation;
+    }
+
+    private void setClientData(){
+        ClientInfoViewModel clientInfoViewModel = new ViewModelProvider(this).get(ClientInfoViewModel.class);
+        clientInfoViewModel.getClientLiveData().observe(this, new Observer<Client>() {
+            @Override
+            public void onChanged(Client client) {
+                edtName.setText(client.getFullName());
+                edtPhoneNumber.setText(client.getPhoneNumber());
+            }
+        });
     }
 
 }
