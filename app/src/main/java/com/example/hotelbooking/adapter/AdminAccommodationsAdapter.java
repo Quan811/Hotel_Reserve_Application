@@ -57,10 +57,10 @@ public class AdminAccommodationsAdapter extends RecyclerView.Adapter<AdminAccomm
         holder.accommodationName.setText(accommodation.getAccommodationName());
         holder.accommodationLocation.setText(accommodation.getLocation());
         holder.accommodationRating.setText(accommodation.getAccommodationRating());
-        Glide.with(holder.itemImage.getContext())
+        Glide.with(holder.accommodationImage.getContext())
                 .load(accommodation.getThumbnail())
                 .centerCrop()
-                .into(holder.itemImage);
+                .into(holder.accommodationImage);
 
         holder.buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +74,7 @@ public class AdminAccommodationsAdapter extends RecyclerView.Adapter<AdminAccomm
         holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(holder.itemImage.getContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(holder.accommodationImage.getContext());
 
                 builder.setTitle("WARNING!!!");
                 builder.setMessage("Can not undo after delete, continue?");
@@ -122,13 +122,13 @@ public class AdminAccommodationsAdapter extends RecyclerView.Adapter<AdminAccomm
     }
 
     public class AccommodationsViewHolder extends RecyclerView.ViewHolder{
-        ImageView itemImage;
+        ImageView accommodationImage;
         TextView accommodationName, accommodationDes, accommodationLocation, accommodationRating;
         MaterialButton buttonUpdate, buttonDelete;
 
         public AccommodationsViewHolder(@NonNull View view) {
             super(view);
-            itemImage = view.findViewById(R.id.item_image);
+            accommodationImage = view.findViewById(R.id.accommodation_image);
             accommodationName = view.findViewById(R.id.accommodation_name);
             accommodationLocation = view.findViewById(R.id.location);
             accommodationDes = view.findViewById(R.id.accommodation_description);

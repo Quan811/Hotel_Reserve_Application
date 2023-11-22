@@ -3,6 +3,7 @@ package com.example.hotelbooking.model;
 import java.io.Serializable;
 
 public class Client implements Serializable {
+    String clientID;
     Account account;
     String fullName;
     String phoneNumber;
@@ -11,10 +12,27 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(Account account, String fullName, String phoneNumber, Order order) {
+    public Client(String clientID, Account account, String fullName, String phoneNumber, Order order) {
+        this.clientID = clientID;
         this.account = account;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
+        this.order = order;
+    }
+
+    public String getClientID() {
+        return clientID;
+    }
+
+    public void setClientID(String clientID) {
+        this.clientID = clientID;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
         this.order = order;
     }
 

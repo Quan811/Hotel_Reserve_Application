@@ -149,7 +149,7 @@ public class AdminRoomAdapter extends RecyclerView.Adapter<AdminRoomAdapter.Admi
 
         public AdminRoomViewHolder(@NonNull View view) {
             super(view);
-            roomType = view.findViewById(R.id.accommodation_name);
+            roomType = view.findViewById(R.id.room_type);
             numberAvailable = view.findViewById(R.id.number_available);
             price = view.findViewById(R.id.price);
             roomDes = view.findViewById(R.id.room_des);

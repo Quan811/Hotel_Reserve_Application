@@ -18,18 +18,26 @@
         android:orientation="vertical"
         android:padding="15dp">
 
-        <ImageView
-            android:id="@+id/item_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/danang"
-            android:scaleType="centerInside"
+        <androidx.cardview.widget.CardView
+            android:id="@id/cardView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:cardCornerRadius="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/accommodation_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/border"
+                android:scaleType="centerCrop"
+                android:src="@drawable/danang" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/accommodation_name"
-            android:layout_width="wrap_content"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
@@ -37,8 +45,8 @@
             android:textColor="@color/black"
             android:textSize="15dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/item_image"
-            app:layout_constraintTop_toTopOf="@id/item_image" />
+            app:layout_constraintStart_toEndOf="@id/cardView"
+            app:layout_constraintTop_toTopOf="@id/cardView" />
 
         <LinearLayout
             android:id="@+id/linear"
@@ -107,7 +115,7 @@
             android:textAllCaps="false"
             android:textSize="10dp"
             app:cornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/item_image"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView"
             app:layout_constraintEnd_toStartOf="@+id/button_delete"
             app:layout_constraintStart_toStartOf="@+id/linearLayout3"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />

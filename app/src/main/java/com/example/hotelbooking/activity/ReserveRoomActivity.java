@@ -95,6 +95,7 @@ public class ReserveRoomActivity extends AppCompatActivity {
 
         //lay thong tin can thiet
         String orderID = UUID.randomUUID().toString();
+        String clientID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String clientName = String.valueOf(edtName.getText()).trim();
         String clientPhoneNumber = String.valueOf(edtPhoneNumber.getText()).trim();
         String total = getTotal();
@@ -112,6 +113,7 @@ public class ReserveRoomActivity extends AppCompatActivity {
         }
         //set du lieu cho Order
         Order order = new Order();
+        order.setClientID(clientID);
         order.setOrderID(orderID);
         order.setClientName(clientName);
         order.setClientPhoneNumber(clientPhoneNumber);

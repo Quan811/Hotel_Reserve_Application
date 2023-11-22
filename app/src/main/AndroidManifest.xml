@@ -36,7 +36,7 @@
             android:name=".activity.DetailAccommodationActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.DetailLocationActivity"
+            android:name=".activity.ClientAccommodationsActivity"
             android:exported="false" />
         <activity
             android:name=".activity.ClientHomeActivity"

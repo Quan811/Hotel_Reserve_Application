@@ -23,10 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class DetailLocationActivity extends AppCompatActivity {
+public class ClientAccommodationsActivity extends AppCompatActivity {
     TextView tvLocation;
     ImageView buttonBack;
-    RecyclerView rcvLocationDetail;
+    RecyclerView rcvAccommodations;
     ClientAccommodationsAdapter clientAccommodationsAdapter;
     AllAccommodationViewModel allAccommodationViewModel;
     @Override
@@ -86,8 +86,8 @@ public class DetailLocationActivity extends AppCompatActivity {
     private void setDataRecyclerView(List<Accommodation> list){
         clientAccommodationsAdapter = new ClientAccommodationsAdapter(getApplicationContext(), list);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
-        rcvLocationDetail.setLayoutManager(linearLayoutManager);
-        rcvLocationDetail.setAdapter(clientAccommodationsAdapter);
+        rcvAccommodations.setLayoutManager(linearLayoutManager);
+        rcvAccommodations.setAdapter(clientAccommodationsAdapter);
     }
 
 
@@ -123,7 +123,7 @@ public class DetailLocationActivity extends AppCompatActivity {
     private void initView() {
         tvLocation = findViewById(R.id.tv_location);
         buttonBack = findViewById(R.id.button_back);
-        rcvLocationDetail = findViewById(R.id.rcv_location_detail);
+        rcvAccommodations = findViewById(R.id.rcv_location_detail);
     }
 
 

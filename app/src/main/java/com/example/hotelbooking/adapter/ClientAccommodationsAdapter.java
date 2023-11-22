@@ -47,10 +47,10 @@ public class ClientAccommodationsAdapter extends RecyclerView.Adapter<ClientAcco
         holder.accommodationDes.setText(accommodation.getAccommodationDescription());
         holder.accommodationLocation.setText(accommodation.getLocation());
         holder.accommodationRating.setText(accommodation.getAccommodationRating());
-        Glide.with(holder.itemImage.getContext())
+        Glide.with(holder.accommodationImage.getContext())
                 .load(accommodation.getThumbnail())
                 .centerCrop()
-                .into(holder.itemImage);
+                .into(holder.accommodationImage);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,12 +71,12 @@ public class ClientAccommodationsAdapter extends RecyclerView.Adapter<ClientAcco
     }
 
     public class LocationDetailViewHolder extends RecyclerView.ViewHolder {
-        ImageView itemImage;
+        ImageView accommodationImage;
         TextView accommodationName, accommodationDes, accommodationLocation, accommodationRating;
 
         public LocationDetailViewHolder(@NonNull View view) {
             super(view);
-            itemImage = view.findViewById(R.id.item_image);
+            accommodationImage = view.findViewById(R.id.accommodation_image);
             accommodationName = view.findViewById(R.id.accommodation_name);
             accommodationLocation = view.findViewById(R.id.location);
             accommodationDes = view.findViewById(R.id.accommodation_description);

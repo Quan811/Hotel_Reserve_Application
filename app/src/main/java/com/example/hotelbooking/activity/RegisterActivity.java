@@ -74,7 +74,6 @@ public class RegisterActivity extends AppCompatActivity {
                 String confirmPassword = edtConfirmPassword.getText().toString().trim();
 
                 Account account = new Account(email, password);
-                Client client = new Client(account, fullName, phoneNumber, null);
 
                 //check Empty
                 if(TextUtils.isEmpty(fullName)){
@@ -146,6 +145,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     Log.d(TAG, "createNewClient: Successfull! ");
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     String userID = user.getUid();
+                                    Client client = new Client(userID, account, fullName, phoneNumber, null);
 
                                     DatabaseReference databaseReference = FirebaseDatabase.getInstance()
                                             .getReference("clients").child(userID);

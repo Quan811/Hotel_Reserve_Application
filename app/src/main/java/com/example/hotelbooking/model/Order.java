@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 public class Order implements Serializable {
     String orderID;
+    String clientID;
     Room room;
     Accommodation accommodation;
     String clientName;
@@ -29,6 +30,14 @@ public class Order implements Serializable {
     }
 
     public Order() {
+    }
+
+    public String getClientID() {
+        return clientID;
+    }
+
+    public void setClientID(String clientID) {
+        this.clientID = clientID;
     }
 
     public String getOrderID() {

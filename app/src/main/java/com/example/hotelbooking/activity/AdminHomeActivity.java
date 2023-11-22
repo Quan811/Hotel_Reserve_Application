@@ -23,6 +23,8 @@ import com.example.hotelbooking.model.Accommodation;
 import com.example.hotelbooking.model.Order;
 import com.example.hotelbooking.viewmodel.AllAccommodationViewModel;
 import com.example.hotelbooking.viewmodel.AllOrdersViewModel;
+import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,7 @@ public class AdminHomeActivity extends AppCompatActivity {
     RecyclerView rcvAccommodations, rcvOrders;
     AllAccommodationViewModel allAccommodationViewModel;
     AllOrdersViewModel allOrdersViewModel;
+    MaterialButton buttonLogout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,8 @@ public class AdminHomeActivity extends AppCompatActivity {
 
         seeAllAccommodationsOnClick();
         seeAllOrdersOnClick();
+
+        buttonLogoutOnClick();
     }
 
     private void seeAllAccommodationsOnClick(){
@@ -132,10 +137,23 @@ public class AdminHomeActivity extends AppCompatActivity {
         }
     }
 
+    private void buttonLogoutOnClick(){
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                mAuth.signOut();
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
     private void initView() {
         seeAllAccommodations = findViewById(R.id.see_all_accommodations);
         seeAllOrders = findViewById(R.id.see_all_order);
         rcvAccommodations = findViewById(R.id.rcv_accommodations);
         rcvOrders = findViewById(R.id.rcv_orders);
+        buttonLogout = findViewById(R.id.button_logout);
     }
 }

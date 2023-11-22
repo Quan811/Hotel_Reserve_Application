@@ -15,13 +15,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import com.example.hotelbooking.R;
-import com.example.hotelbooking.activity.DetailLocationActivity;
+import com.example.hotelbooking.activity.ClientAccommodationsActivity;
 import com.example.hotelbooking.adapter.HomeCategoryAdapter;
 import com.example.hotelbooking.adapter.HomePopularDesAdapter;
 import com.example.hotelbooking.adapter.HomePropertyTypeAdapter;
@@ -215,7 +213,7 @@ public class HomeFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Intent intent = new Intent(getContext(), DetailLocationActivity.class);
+                Intent intent = new Intent(getContext(), ClientAccommodationsActivity.class);
                 intent.putExtra("search_query", query);
                 startActivity(intent);
                 return true;

@@ -21,6 +21,7 @@ import com.example.hotelbooking.model.Room;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -139,7 +140,7 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.My
         // Lấy DatabaseReference cho đối tượng Order cần cập nhật
         databaseReference = FirebaseDatabase.getInstance().getReference("orders").child(order.getOrderID());
 
-        // Cập nhật thuộc tính orderStatus trên Firebase Realtime Database
+        // Cập nhật cho nút Orders
         Map<String, Object> updateData = new HashMap<>();
         updateData.put("orderStatus", order.getOrderStatus());
 
@@ -154,5 +155,22 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.My
                         }
                     }
                 });
+
+        // Cập nhật cho client
+        String clientID = order.getClientID();
+        String orderID = order.getOrderID();
+        DatabaseReference databaseReference1 = FirebaseDatabase
+                .getInstance()
+                .getReference("clients").child(clientID).child("orders");
+        databaseReference1.child(orderID).child("orderStatus")
+                .setValue(order.getOrderStatus())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Log.d(TAG, "Change status order from client: Success ");
+                }
+            }
+        });
     }
 }

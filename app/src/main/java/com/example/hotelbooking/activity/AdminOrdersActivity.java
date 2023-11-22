@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,6 +42,7 @@ public class AdminOrdersActivity extends AppCompatActivity {
         initView();
         showAllOrder();
         setOrderSpinner();
+        buttonBackOnClick();
     }
 
     private void initView() {
@@ -136,6 +138,17 @@ public class AdminOrdersActivity extends AppCompatActivity {
 
              }
          });
+     }
+
+     private void buttonBackOnClick(){
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent = new Intent(getApplicationContext(), AdminHomeActivity.class);
+                startActivity(intent);
+            }
+        });
      }
 
 }
